@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>CSS Flexbox Technical Documentation</title>
+  </head>
+
+  <body>
+
+    <main id="main-doc">
+      <h1 id="heading">Introduction</h1>
+
+      <p>The CSS Flexible Box Layout was introduced as an <strong>additional layout mode to the existing block, inline, table and positioned layouts</strong> that were used to configure box size and positioning in relation to one another using Cascading Stylesheets when designing webpages to respond to different screen sizes.</p>
+
+      <p><strong>Flex layout offers a flex container with the following characteristics:</strong></p>
+
+      <ul>
+        <li>the ability to <strong>position items contained therein in various directions</strong>, i.e. leftward, rightward, downward and upward flow directions</li>
+        <li>being able to <strong>reverse the order of all items</strong> whilst styling your webpage</li>
+        <li>either laying out items across a main linear axis or as multiple lines wrapped along a cross axis</li>
+        <li><strong>resize items to correspond with available space</strong> within the container</li>
+        <li><strong>align items on the cross axis with the container itself or other items</strong> to create asymmetrical layouts</li>
+        <li>both <strong>collapsing or expanding items on the main axis whilst preserving the cross size</strong> of the container</li>
+      </ul>
+
+      <p>This makes items stack and collapse according to the desired configuration rather than having to set the layout of each item individually.</p><hr>
+            
+      <section id="1._Introducing_the_Flex_Layout_Box_Model" class="main-section">
+        <header>1. Introducing the Flex Layout Box Model</header>
+        <p>All <strong>flex items</strong> laid out in this model are encapsulated in a <strong>flex container</strong> that behaves similarly to a block container however, the below properties do not apply.</p>
+
+        <ul>
+          <li><code>float</code></li>
+          <li><code>clear</code></li>
+          <li><code>vertical-align</code></li>
+          <li><code>::first-line</code></li>
+          <li><code>::first-letter</code></li>
+        </ul>
+
+        <p>Therefore, all flex items and their corresponding properties can be set within the container and separately from the flow of the rest of the document.</p>
+
+        <p>The horizontal axis is referred to as the <strong>main</strong> axis and is the width across which flex items are laid out from left to right. The vertical axis is also called the <strong>secondary</strong> or cross axis along which flex items are laid out across the length of the container from top to bottom.</p>
+        <div class="image">
+          <img src="https://www.w3.org/TR/css-flexbox-1/images/flex-direction-terms.svg" alt="flex-direction-terms">
+          <figcaption>Graphical representation of Flex Layout Box Model (W3C, 2018)</figcaption>
+        </div>
+
+        <p>To lay items out over a single line, use only the main axis by setting the css attribute <code>display: inline-flex</code>. </p>
+      </section>
+
+      <a id="back-to-top" href="#heading">[ back to top ]</a><hr>
+      
+      <section id="2._Properties" class="main-section">
+        <header>2. Properties</header>
+        <p>This is a list of the CSS properties that can be used to adjust flex item sizing and positioning:</p>
+        <table style="width:100%">
+          <tr>
+            <th style="width:30%">Property Name</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>display: flex</code></td>
+            <td>Sets the element to a block-level flex container.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>visibility: collapse</code></td>
+            <td>Collapses the flex item horizontally on the main axis so the item no longer renders, but keeps the vertical or cross axis uncollapsed.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>display: inline-flex</code></td>
+            <td>Sets the element to an inline-level flex container.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-direction: row</code></td>
+            <td>Sets the orientation of the flex container to match the inline axis, therefore both start on the left and end on the right.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-direction: row-reverse</code></td>
+            <td>Sets the orientation of the flex container to match the inline axis, therefore both start on the left and end on the right except positioning items in revere order.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-direction: column</code></td>
+            <td>Sets the orientation of the flex container to match the block axis, therefore both start from top and end on the bottom.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-direction: column-reverse</code></td>
+            <td>Sets the orientation of the flex container to match the block axis, therefore both start from top and end on the bottom except positioning the items in reverse order.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-wrap: no-wrap</code></td>
+            <td>Sets the flex container horizontally, so that all flex items are positioned along the main axis only.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-wrap: wrap</code></td>
+            <td>Sets the flex container horizontally and vertically, so that all flex items are positioned along the main and secondary axis in a zig-zag pattern, starting on the top left and ending on the bottom right.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-wrap: wrap-reverse</code></td>
+            <td>Sets the flex container horizontally and vertically, so that all flex items are positioned along the main and secondary axis in a zig-zag pattern, starting on the top left and ending on the bottom right. Flex items are sorted in reverse order.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-flow: row</code></td>
+            <td>Sets the flex container to inline, so that flex items expand or collapse to fit the horizontal or main axis from left to right.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-flow: column wrap</code></td>
+            <td>Sets the flex container to block, so that flex items expand and collapse to fit the vertical secondary or cross axis from top to bottom.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-flow: row-reverse wrap-reverse</code></td>
+            <td>Sets the flex container to inline, so that flex items expand or collapse to fit the horizontal or main axis from right to left and wrapping from bottom to top.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-flow: column-reverse wrap-reverse</code></td>
+            <td>Sets the flex container to block, so that flex items expand and collapse to fit the vertical secondary or cross axis from bottom to top and wrapping from right to left.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>writing-mode: horizontal-tb wrap-reverse</code></td>
+            <td>Sets the writing flow from top to bottom.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>writing-mode: horizontal-rl wrap-reverse</code></td>
+            <td>Sets the writing flow from right to left.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>order: 0</code></td>
+            <td>The default setting of order in which flex items appear in the container, which can be substituted with a single integer indicating the lowest number as the first flex item to appear. Not to be used for accessibility.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex: flex-grow</code></td>
+            <td>Sets how much a flex item can grow in relation to other flex items within the flex container, distributed over positive free space. Unless specified, the default value is 1.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex: flex-shrink</code></td>
+            <td>Sets how much a flex item can shrink in relation to other flex items within the flex container, distributed over negative free space. Unless specified, the default value is 1.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex: flex-basis</code></td>
+            <td>Sets a main size for a flex item prior to distributing free space. </td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex: none</code></td>
+            <td>Flex items are set to expand to <code>0, 0, auto</code>, making them unable to grow or shrink. </td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex: initial</code></td>
+            <td>Flex items are set to expand to <code>0, 1, auto</code>, making them unable to grow into positive free space but able to shrink to their minimum content size when there is insufficient space available. </td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex: auto</code></td>
+            <td>Flex items are set to expand to <code>1, 1, auto</code>, making them able to grow into any positive free space available. </td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-grow: <'number'><auto></code></td>
+            <td>Sets the flex grow factor for the flex item. It is preferable to set this factor within the flex property rather than separately.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-shrink: <'number'><auto></code></td>
+            <td>Sets the flex shrink factor for the flex item. It is preferable to set this factor within the flex property rather than separately.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>flex-basis: content | <'width'><auto></code></td>
+            <td>Sets the flex basis for the flex item. It is preferable to set this factor within the flex property rather than separately.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>justify-content: flex-start<auto></code></td>
+            <td>Sets the placement of flex items to pack from the start of the line, flush against the container margin and the item to its right.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>justify-content: flex-end<auto></code></td>
+            <td>Sets the placement of flex items to pack from the end of the line, flush against the container margin and the item to its left.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>justify-content: center<auto></code></td>
+            <td>Sets the placement of flex items to pack from the center of the line with equal amounts of space between the container's left and right edge and the last item on the line, overflowing over the left and right edges should insufficient space be available.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>justify-content: space-between<auto></code></td>
+            <td>Evenly distributes flex items along the line with items flush against the left and right edges of the flex container.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>justify-content: space-around</code></td>
+            <td>Evenly distributes flex items along the line with a half-size space on the left and right edges of the flex container.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-items: flex-start</code></td>
+            <td>Sets the default alignment for all flex items in the flex container starting flush against the left edge of the container.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-items: flex-end</code></td>
+            <td>Sets the default alignment for all flex items in the flex container starting flush against the right edge of the container.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-items: center</code></td>
+            <td>Sets the default alignment for all flex items in the flex container centered and overflowing over each of the left and right edges if there is insufficient space available.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-items: baseline</code></td>
+            <td>Sets the default alignment for all flex items in the flex container where all of their content baselines are aligned with the tallest flex item flush along the bottom of the line.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-items: stretch</code></td>
+            <td>Sets the default alignment for all flex items in the flex container where all flex items will be stretched vertically and horizontally along the main axis if the flex item cross size and both cross-axis margins are auto.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-self: auto</code></td>
+            <td>Overrides the default alignment for single flex items. Defers to the parent box align-items value for cross-axis alignment.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-self: flex-start</code></td>
+            <td>Overrides the default alignment for single flex items in the flex container to start flush against the left edge of the container.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-self: flex-end</code></td>
+            <td>Overrides the default alignment for single flex items in the flex container to start flush against the right edge of the container.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-self: center</code></td>
+            <td>Overrides the default alignment for single flex items in the flex container to be centered and overflowing over each of the left and right edges if there is insufficient space available.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-self: baseline</code></td>
+            <td>Overrides the default alignment for single flex items in the flex container where all of their content baselines are aligned with the tallest flex item flush along the bottom of the line.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-self: stretch</code></td>
+            <td>Overrides the default alignment for single flex items in the flex container where all flex items will be stretched vertically and horizontally along the main axis if the flex item cross size and both cross-axis margins are auto.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-content: flex-start</code></td>
+            <td>Aligns the lines within a flex container when there is extra space along the cross axis to start flush against the left edge of the container.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-content: flex-end</code></td>
+            <td>Aligns the lines within a flex container when there is extra space along the cross axis to start flush against the right edge of the container.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-content: center</code></td>
+            <td>Aligns the lines within a flex container when there is extra space along the cross axis to be centered and overflowing over each of the left and right edges if there is insufficient space available.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-content: space-between</code></td>
+            <td>Aligns the lines within a flex container distributed with items flush against the left and right edges of the flex container.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-content: space-around</code></td>
+            <td>Aligns the lines within a flex container distributed with a half-size space on the left and right edges of the flex container.</td>
+          </tr>
+          <tr>
+            <td style="width:30%"><code>align-content: stretch</code></td>
+            <td>Aligns the lines within a flex container when there is extra space along the cross axis where all flex items will be stretched vertically and horizontally along the main axis if the flex item cross size and both cross-axis margins are auto.</td>
+          </tr>
+        </table>
+      </section>
+
+      <a id="back-to-top" href="#heading">[ back to top ]</a><hr>
+      
+      <section id="3._Diagrams" class="main-section">
+        <header>3. Diagrams</header>
+        <div class="image">
+          <img src="https://www.w3.org/TR/css-flexbox-1/images/rel-vs-abs-flex.svg" alt="flex-basis-zero-and-auto-comparison">
+          <figcaption>A comparison of how flex-basis set to zero compares to auto which starts from the content size </figcaption>
+        </div>
+        
+        <div class="image">
+          <img src="https://www.w3.org/TR/css-flexbox-1/images/flex-pack.svg" alt="five-justify-content-effects">
+        <figcaption>How each of the five justify-content settings place flex items</figcaption>
+        </div>
+
+        <div class="image">
+          <img src="https://www.w3.org/TR/css-flexbox-1/images/flex-align.svg" alt="five-align-items-effects">
+        <figcaption>How each of the five align-items settings place flex items</figcaption>
+        </div>
+
+        <div class="image">
+          <img src="https://www.w3.org/TR/css-flexbox-1/images/align-content-example.svg" alt="six-align-content-effects">
+        <figcaption>How each of the six align-items settings place flex items</figcaption>
+        </div>
+
+      </section>
+
+      <a id="back-to-top" href="#heading">[ back to top ]</a><hr>
+      
+      <section id="4._Reference" class="main-section">
+        <header>4. Reference</header>
+        <p>World Wide Web Consortium. 2018. CSS Flexible Box Layout Module Level 1. W3C. Retrieved: February 5, 2024, from <a href="https://www.w3.org/TR/css-flexbox-1/">https://www.w3.org/TR/css-flexbox-1/</a></p>
+      </section>
+
+      <a id="back-to-top" href="#heading">[ back to top ]</a><hr>
+      
+      <section id="5._License" class="main-section">
+        <header>5. License</header>
+        <h3>Software and Document license - 2023 version</h3>
+        <p>Status: This document is in effect since 1 January 2023.</p>
+        <p>This work is being provided by the copyright holders under the following license.</p>
+        <h4>License</h4>
+        <p>By obtaining and/or copying this work, you (the licensee) agree that you have read, understood, and will comply with the following terms and conditions.</p>
+        <p>Permission to copy, modify, and distribute this work, with or without modification, for any purpose and without fee or royalty is hereby granted, provided that you include the following on ALL copies of the work or portions thereof, including modifications:</p>
+        <ul>
+          <li>The full text of this NOTICE in a location viewable to users of the redistributed or derivative work.</li>
+          <li>Any pre-existing intellectual property disclaimers, notices, or terms and conditions. If none exist, the W3C software and document short notice should be included.</li>
+          <li>Notice of any changes or modifications, through a copyright statement on the new code or document such as "This software or document includes material copied from or derived from [title and URI of the W3C document]. Copyright © [$year-of-document] World Wide Web Consortium. https://www.w3.org/copyright/software-license-2023/"</li>
+        </ul>
+        <h4>Disclaimers</h4>
+        <p>THIS WORK IS PROVIDED "AS IS," AND COPYRIGHT HOLDERS MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE SOFTWARE OR DOCUMENT WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.</p>
+        <p>COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE SOFTWARE OR DOCUMENT.</p>
+        <p>The name and trademarks of copyright holders may NOT be used in advertising or publicity pertaining to the work without specific, written prior permission. Title to copyright in this work will at all times remain with copyright holders.</p>
+        <h4>Versions</h4>
+        <ul>
+          <li><strong>This version: </strong><a href="https://www.w3.org/copyright/software-license-2023"/>https://www.w3.org/copyright/software-license-2023/</a></li>
+          <li><strong>Latest version: </strong><a href="https://www.w3.org/copyright/software-license/">https://www.w3.org/copyright/software-license/</a></li>
+          <li><strong>Previous version: </strong><a href="https://www.w3.org/copyright/software-license-2015">https://www.w3.org/copyright/software-license-2015/</a></li>
+        </ul>
+        <h4>Changes since the previous document</h4>
+        <p>The 2023 version updates identification of the copyright holder.</p>
+      </section>
+
+      <a id="back-to-top" href="#heading">[ back to top ]</a><hr>
+
+    </main>
+
+    <nav id="navbar">
+        <header>CSS Flexbox Technical Documentation</header>
+        <hr>
+        <a class="nav-link" href="#1._Introducing_the_Flex_Layout_Box_Model">1. Introducing the Flex Layout Box Model</a><hr>
+        <a class="nav-link" href="#2._Properties">2. Properties</a><hr>
+        <a class="nav-link" href="#3._Diagrams">3. Diagrams</a><hr>
+        <a class="nav-link" href="#4._Reference">4. Reference</a><hr>
+        <a class="nav-link" href="#5._License">5. License</a>
+    </nav>
+
+  </body>
+
+</html>
